@@ -4,19 +4,6 @@ import torch.nn.functional as F
 import torch.optim as optim
 import numpy as np
 
-"""
-Description:
-    Is Concating a One_hot_Vector to Global_feature for classifying different objects VALID?
-    this is a test, where Y is only determined by the first number of X.
-Result:
-    Absolutely Valid, you fool...
-"""
-
-'''
- Focal Loss test
-    why not learning ???
-'''
-
 Device = torch.device("cuda")
 Epoch = 32
 
