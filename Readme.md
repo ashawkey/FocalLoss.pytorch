@@ -1,6 +1,8 @@
 # Classification Losses & Focal Loss
 
 In PyTorch, All losses takes in Predictions (x, Input) and Ground Truth (y, target) , to calculate a list L:
+
+
 $$
 l(x, y) = L = \{l_i\}_{i=0,1,..} \\
 $$
@@ -11,6 +13,8 @@ And return L.sum() or L.mean() corresponding to the reduction parameter.
 Negative Log Likelihood Loss.
 
 Though it has Log in name, it doesn't calculate the logarithm.
+
+
 $$
 l_i = -x_i[y_i]
 $$
@@ -34,6 +38,8 @@ print(loss(preds, target))
 Simply apply log and softmax, then pass to NLLLoss. 
 
 `CrossEntropyLoss(x, y) = NLLLoss(LogSoftmax(x), y)`
+
+
 $$
 l_i = -log(\frac {exp(x_i[y_i])} {\sum_j exp(x_i[j])})
 $$
@@ -66,6 +72,8 @@ No logarithm or softmax is performed.
 Input is `(N, ), float32`, and Target is `(N, ), float32`
 
 (Note for CE, Input is `(N, C), float32`,  and Target is `(N, ) int64`)
+
+
 $$
 l_i = -(y_ilogx_i + (1-y_i)log(1-x_i))
 $$
@@ -91,14 +99,22 @@ print(-np.log(0.2))
 \[[Paper](https://arxiv.org/abs/1708.02002)\]
 
 Focal Loss is invented first as an improvement of Binary Cross Entropy Loss to solve **the imbalanced classification problem:**
+
+
 $$
 l_i = -(y_i(1-x_i)^{\gamma}logx_i + (1-y_i)x_i^{\gamma}log(1-x_i)) 
 $$
+
+
 Based on this, we can write the multi-class form as:
+
+
 $$
 s_i = \frac {exp(x_i[y_i])} {\sum_j exp(x_i[j])}\\
 l_i = -(1-s_i)^{\gamma}log(s_i)
 $$
+
+
 Note that in the original paper, there is also an alpha parameter assigning different weight for each class. This is in fact implemented by PyTorch NLLLoss's weight parameter.
 
 ```python
