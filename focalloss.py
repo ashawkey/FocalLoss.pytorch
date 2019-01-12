@@ -35,9 +35,7 @@ class FCN(nn.Module):
         return x
 
 class FocalLoss(nn.Module):
-    '''
-    Multi-class Focal loss implementation
-    '''
+    '''Multi-class Focal loss implementation'''
     def __init__(self, gamma=2, weight=None):
         super(FocalLoss, self).__init__()
         self.gamma = gamma
@@ -131,8 +129,8 @@ if __name__ == "__main__":
     train_data = gendata(1000)
     val_data = gendata(500)
     model = FCN().to(Device)
-    #criterion = FocalLoss()
-    criterion = nn.CrossEntropyLoss()
+    criterion = FocalLoss()
+    #criterion = nn.CrossEntropyLoss()
     optimizer = optim.Adam(model.parameters())
     for epoch in range(Epoch):
         train(train_data[0], train_data[1], model, criterion, optimizer, epoch)
