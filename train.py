@@ -40,20 +40,13 @@ class FCN(nn.Module):
         x = self.fc2(x) # [B, 2]
         return x
 
-def gendata(N, p=[0.9, 0.1]):
-    Y = np.random.choice(2, size=(N, 1), p=p).astype(np.int64)
-    X = (np.random.rand(N, 10) + Y * 0.2).astype(np.float32)
-    Y = torch.LongTensor(Y)
-    X = torch.FloatTensor(X)
-    return X, Y
-
 class BiasedDataset(data.Dataset):
     def __init__(self, N, p=[0.9, 0.1]):
         super().__init__()
         self.N = N
         self.p = p
         Y = np.random.choice(2, size=(N, 1), p=p).astype(np.int64)
-        X = (np.random.rand(N, 10) + Y * 0.2).astype(np.float32)
+        X = (np.random.rand(N, 10) + Y * 0.2).astype(np.float32) # noised Y
         self.Y = torch.LongTensor(Y).squeeze()
         self.X = torch.FloatTensor(X)
 
