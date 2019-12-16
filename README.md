@@ -12,4 +12,4 @@ Running results from the `train.py`.
 
 Also compared with [imbalanced-dataset-sampler](https://github.com/ufoym/imbalanced-dataset-sampler), and it seems that it is much better to use balanced sample method if your task can use it (eg. classification).
 
-![image-20191216151753209](assets\image-20191216151753209.png)
+![image-20191216151753209](./assets/image-20191216151753209.png)
